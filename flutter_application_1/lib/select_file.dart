@@ -33,7 +33,7 @@ class _SelectFileState extends State<SelectFile> {
             .toList();
       });
 
-      // Проверяем, существует ли файл origin.txt, и если нет, создаем его
+      // origin.txt создаем его если нет
       final String originFilePath = '${directory.path}/origin.txt';
       final File originFile = File(originFilePath);
       if (!await originFile.exists()) {
@@ -64,17 +64,17 @@ class _SelectFileState extends State<SelectFile> {
     void _deleteFiles(File file) async {
     final String fileName = file.path.split('/').last;
     final String filePathWithoutExtension =
-        file.path.substring(0, file.path.length - 4); // Убираем ".txt" из пути
+        file.path.substring(0, file.path.length - 4); 
     final String htmlFilePath = '$filePathWithoutExtension.html';
 
-    // Удаляем .txt и .html файлы
+    // удаление файдов --.html в другом месте
     await file.delete();
     final File htmlFile = File(htmlFilePath);
     if (await htmlFile.exists()) {
       await htmlFile.delete();
     }
 
-    // Перезагружаем список файлов
+    // перезагрузка списка файлов
     _loadFiles();
   }
 
